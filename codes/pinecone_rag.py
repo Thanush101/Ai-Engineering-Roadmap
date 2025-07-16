@@ -1,9 +1,13 @@
 from pinecone import Pinecone, ServerlessSpec
 
+# API KEY
 pc = Pinecone(api_key="pcsk_2ULHqt_9SDZvryKhMjoGNqVBiShwpENsVnPmyY3VmyjeLNvy1NVLS9CkvT1Q4KtLGqTJjV")
 
+# Defining theindex name (Database name)
 index_name = "developer-quickstart-py"
 
+
+# Creating a dense index for semantic search
 if not pc.has_index(index_name):
     pc.create_index_for_model(
         name=index_name,
@@ -69,13 +73,14 @@ records = [
 ]
 
 
+# In Pinecone, there are two types of indexes for storing vector data: Dense indexes store dense vectors for semantic search, and sparse indexes store sparse vectors for lexical/keyword search.
+
 # Target the index
+# Defining the Database(index_name) to use to insert records. Keeping it dense for semantic search as dense is used for that.
 dense_index = pc.Index(index_name)
 
-# Upsert the records into a namespace
+# Inserting the records into a namespace (table)
 dense_index.upsert_records("example-namespace", records)
-
-
 
 # Wait for the upserted vectors to be indexed
 import time
@@ -84,9 +89,6 @@ time.sleep(10)
 # View stats for the index
 stats = dense_index.describe_index_stats()
 print(stats)
-
-
-
 
 
 #next 
@@ -109,8 +111,6 @@ results = dense_index.search(
 # Print the results
 for hit in results['result']['hits']:
         print(f"id: {hit['_id']:<5} | score: {round(hit['_score'], 2):<5} | category: {hit['fields']['category']:<10} | text: {hit['fields']['chunk_text']:<50}")
-
-
 
 
 
