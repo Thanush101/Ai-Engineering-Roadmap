@@ -1,10 +1,17 @@
 from pinecone import Pinecone, ServerlessSpec
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
 # API KEY
-pc = Pinecone(api_key="pcsk_2ULHqt_9SDZvryKhMjoGNqVBiShwpENsVnPmyY3VmyjeLNvy1NVLS9CkvT1Q4KtLGqTJjV")
+api_key = os.getenv("PINECONE_API_KEY")
+
+pc = Pinecone(api_key=api_key)
 
 # Defining theindex name (Database name)
 index_name = "developer-quickstart-py"
+
+
 
 
 # Creating a dense index for semantic search
@@ -18,6 +25,7 @@ if not pc.has_index(index_name):
             "field_map":{"text": "chunk_text"}
         }
     )
+
 
 records = [
     { "_id": "rec1", "chunk_text": "The Eiffel Tower was completed in 1889 and stands in Paris, France.", "category": "history" },

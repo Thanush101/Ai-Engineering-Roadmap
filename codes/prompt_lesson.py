@@ -6,7 +6,6 @@ load_dotenv()
 
 
 llm = init_chat_model("groq:llama-3.3-70b-versatile",temperature=1,max_tokens=1000,max_retries=3)
-llm2 = init_chat_model("bedrock:apac.anthropic.claude-3-5-sonnet-20241022-v2:0", model_kwargs={"temperature": 1,"max_tokens": 1000 ,"top_k":200 } )
 
 zero_shot_promot  =ChatPromptTemplate.from_messages([
     (
@@ -149,4 +148,3 @@ cot_prompt = ChatPromptTemplate.from_messages([
 # content = rs.content
 # print(content)
 
-print(llm2.invoke("who is an item writer"))
