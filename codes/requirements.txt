@@ -9,3 +9,4 @@ pypdf
 pinecone
 langchain-groq
 weaviate-client
+pandas
