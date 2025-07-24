@@ -16,7 +16,7 @@ items = df.head(100)
 
 # What kind of books does the user like?
 # This is like telling a librarian "I like these types of books"
-user_profile = "science fiction"
+user_profile = "horror"
 
 # user_profile = """
 # I primarily enjoy science fiction (especially space opera), 
